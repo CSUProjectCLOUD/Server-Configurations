@@ -1,0 +1,30 @@
+
+#cloud-config of Analytics Report Team
+
+hostname: artserver
+manage_etc_hosts: true
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+users:
+  - default
+  - name: artadmin
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    groups: sudo
+    shell: /bin/bash
+    lock_passwd: false
+    plain_text_passwd: art12345
+
+packages:
+  - net-tools
+  - curl
+  - git
+  - vim
+  - plocate
+
+runcmd:
+  - updatedb
+
+final_message: "Server 'artserver' setup is complete. Login with username 'artadmin' and password 'art12345'"

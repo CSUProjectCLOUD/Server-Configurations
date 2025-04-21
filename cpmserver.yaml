@@ -1,0 +1,30 @@
+
+#cloud-config of Customer Portfolio Management
+
+hostname: cpmserver
+manage_etc_hosts: true
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+users:
+  - default
+  - name: cpmadmin
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    groups: sudo
+    shell: /bin/bash
+    lock_passwd: false
+    plain_text_passwd: cpm12345
+
+packages:
+  - net-tools
+  - curl
+  - git
+  - vim
+  - plocate
+
+runcmd:
+  - updatedb
+
+final_message: "Server 'cpmserver' setup is complete. Login with username 'cpmadmin' and password 'cpm12345'"
